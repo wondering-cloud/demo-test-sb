@@ -1,24 +1,22 @@
-const StoryblokClient = require('storyblok-js-client')
+const StoryblokClient = require("storyblok-js-client");
 
 // !!! Change to your Storyblok preview token
-const StoryblokToken = 'qQTqOxTlxSrQiW7f9FANDwtt'
+const StoryblokToken = "1w2JgMm3V3Fimh54IsdKPgtt";
 
 module.exports = {
-  mode: 'spa',
+  mode: "spa",
   modules: [
-    ['storyblok-nuxt', {accessToken: StoryblokToken, cacheProvider: 'memory'}]
+    [
+      "storyblok-nuxt",
+      { accessToken: StoryblokToken, cacheProvider: "memory" },
+    ],
   ],
-  plugins: [
-    '~/plugins/components',
-    '~/plugins/filters'
-  ],
+  plugins: ["~/plugins/components", "~/plugins/filters"],
   router: {
-    middleware: 'languageDetection'
+    middleware: "languageDetection",
   },
   generate: {
-    routes: [
-      {route: '/'}
-    ]
+    routes: [{ route: "/" }],
   },
   /* generate: {
     routes() {
@@ -41,54 +39,63 @@ module.exports = {
     }
   },*/
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
-    title: 'mywebsite',
+    title: "mywebsite",
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Storyblok project' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: "Storyblok project" },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css' },
-      { rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i' }
-    ]
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        rel: "stylesheet",
+        href: "https://use.fontawesome.com/releases/v5.0.9/css/all.css",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i",
+      },
+    ],
   },
   /*
-  ** Customize the progress bar color
-  */
-  loading: { color: '#3B8070' },
+   ** Customize the progress bar color
+   */
+  loading: { color: "#3B8070" },
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     optimization: {
       splitChunks: {
-        chunks: 'async',
-      }
+        chunks: "async",
+      },
     },
     splitChunks: {
       pages: false,
       vendor: true,
       commons: true,
       runtime: true,
-      layouts: false
+      layouts: false,
     },
     /*
-    ** Run ESLint on save
-    */
-    extend (config, ctx) {
+     ** Run ESLint on save
+     */
+    extend(config, ctx) {
       if (ctx.dev && process.client) {
         config.module.rules.push({
-          enforce: 'pre',
+          enforce: "pre",
           test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
+          loader: "eslint-loader",
+          exclude: /(node_modules)/,
+        });
       }
-    }
-  }
-}
+    },
+  },
+};
